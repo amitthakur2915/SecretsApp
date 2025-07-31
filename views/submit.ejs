@@ -1,0 +1,50 @@
+<%- include('partials/header') %>
+
+<div class="container" style="padding-top: 40px; text-align: center;">
+    <i class="fas fa-key fa-4x"></i>
+    <h1 class="display-3" style="margin-top: 10px;">Secrets!!</h1>
+    <hr style="width: 60%; margin: 20px auto;">
+
+    <p class="lead" style="margin-bottom: 30px;">Don't keep your secrets, share them anonymously!</p>
+
+    <!-- Secret submission form -->
+    <form action="/submit" method="POST" style="margin-bottom: 30px;">
+        <input type="text" name="secret" placeholder="Enter your secret..." required
+               style="padding: 10px; width: 300px; max-width: 100%; border-radius: 5px; border: 1px solid #ccc;">
+        <button type="submit"
+                style="padding: 10px 20px; border: none; border-radius: 5px; background-color: #2e2e2e; color: white; margin-left: 10px;">
+            Submit
+        </button>
+    </form>
+
+    <!-- Display submitted secrets -->
+    <% if (secrets.length > 0) { %>
+        <div style="text-align: left; max-width: 500px; margin: auto;">
+            <h3 style="margin-bottom: 15px;">Anonymous Secrets:</h3>
+            <ul style="list-style-type: none; padding: 0;">
+                <% secrets.forEach(function(secret) { %>
+                    <li style="background-color: #fff; padding: 12px 15px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                        <%= secret.content %>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    <% } else { %>
+        <p style="color: #888;">No secrets submitted yet.</p>
+    <% } %>
+
+    <!-- Only Logout Button with Confirmation -->
+    <div class="button-group" style="margin-top: 40px;">
+        <a class="btn btn-dark btn-lg button" href="#" onclick="confirmLogout()" role="button">Logout</a>
+    </div>
+</div>
+
+<script>
+function confirmLogout() {
+    if (confirm("Do you really want to logout?")) {
+        window.location.href = "/logout";
+    }
+}
+</script>
+
+<%- include('partials/footer') %>

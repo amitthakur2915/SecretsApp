@@ -1,0 +1,54 @@
+<%- include('partials/header') %>
+<div class="container mt-5">
+    <h1>Register</h1>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/register" method="post" onsubmit="return validateRegisterForm()">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="username" id="registerEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" id="registerPassword" required>
+                        </div>
+                        <div class="form-group mt-2">
+                            <input type="checkbox" onclick="togglePassword('registerPassword')"> Show Password
+                        </div>
+                        <button type="submit" class="btn btn-dark">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function togglePassword(id) {
+    const field = document.getElementById(id);
+    field.type = field.type === "password" ? "text" : "password";
+}
+
+function validateRegisterForm() {
+    const email = document.getElementById("registerEmail").value;
+    const password = document.getElementById("registerPassword").value;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
+
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    if (!passwordRegex.test(password)) {
+        alert("Password must be at least 6 characters and include uppercase, lowercase, number, and special character.");
+        return false;
+    }
+
+    return true;
+}
+</script>
+<%- include('partials/footer') %>
