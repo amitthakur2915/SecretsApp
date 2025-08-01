@@ -1,26 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-require('dotenv').config(); // Load env variables from .env file
+require('dotenv').config(); 
 const encrypt = require('mongoose-encryption');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-// ✅ MongoDB URI
 const mongoURL = process.env.MONGO_URI;
-
-// ✅ Middleware
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-// ✅ Connect MongoDB
 mongoose.connect(mongoURL)
-  .then(() => console.log("✅ MongoDB connected successfully!"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
-
-// ✅ User Schema & Encryption
+  .then(() => console.log("MongoDB connected successfully!"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 const userSchema = new mongoose.Schema({
   email: String,
   password: String
@@ -33,23 +26,15 @@ userSchema.plugin(encrypt, {
 });
 
 const User = mongoose.model("User", userSchema);
-
-// ✅ Secret Schema
 const secretSchema = new mongoose.Schema({
   content: String,
   userId: String
 });
-
 const Secret = mongoose.model("Secret", secretSchema);
-
-// ✅ Fake Session
 let currentUserId = null;
-
-// ✅ Routes
 app.get("/", (req, res) => {
   res.render("home");
 });
-
 app.get("/login", (req, res) => {
   res.render("login", { error: null });
 });
@@ -64,7 +49,6 @@ app.get("/submit", async (req, res) => {
   res.render("submit", { secrets });
 });
 
-// ✅ Register with Validation
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
 
@@ -96,8 +80,6 @@ app.post("/register", async (req, res) => {
     res.status(500).send("Registration failed.");
   }
 });
-
-// ✅ Login with Error
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -118,8 +100,6 @@ app.post("/login", async (req, res) => {
     res.status(500).send("Login failed.");
   }
 });
-
-// ✅ Submit Secret
 app.post("/submit", async (req, res) => {
   if (!currentUserId) return res.redirect("/login");
 
@@ -129,14 +109,10 @@ app.post("/submit", async (req, res) => {
   }
   res.redirect("/submit");
 });
-
-// ✅ Logout
 app.get("/logout", (req, res) => {
   currentUserId = null;
   res.redirect("/");
 });
-
-// ✅ Start Server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
