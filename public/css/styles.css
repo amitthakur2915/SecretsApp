@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background-color: #e8ecef; 
+    background-color: #e8ecef;
     font-family: Arial, sans-serif;
 }
 
@@ -16,16 +16,19 @@ h1 {
     color: #222;
     margin: 0;
 }
+
 p {
     font-size: 18px;
     color: #555;
     margin: 10px 0 40px;
 }
+
 .button-group {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
+
 .button {
     padding: 10px 20px;
     font-size: 16px;
@@ -34,10 +37,12 @@ p {
     border-radius: 5px;
     transition: all 0.3s;
 }
+
 .button-register {
     background-color: #f0f0f0;
     color: #000;
 }
+
 .button-login {
     background-color: #2e2e2e;
     color: #fff;
@@ -45,4 +50,55 @@ p {
 
 .button:hover {
     opacity: 0.9;
+}
+
+@media (max-width: 1200px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 992px) {
+    html {
+        font-size: 15px;
+    }
+
+    .display-3 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+
+    .jumbotron h1,
+    .display-3 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 13px;
+    }
+
+    .jumbotron {
+        padding: 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
 }
