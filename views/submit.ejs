@@ -7,7 +7,6 @@
 
     <p class="lead" style="margin-bottom: 30px;">Don't keep your secrets, share them anonymously!</p>
 
-    <!-- Secret submission form -->
     <form action="/submit" method="POST" style="margin-bottom: 30px;">
         <input type="text" name="secret" placeholder="Enter your secret..." required
                style="padding: 10px; width: 300px; max-width: 100%; border-radius: 5px; border: 1px solid #ccc;">
@@ -17,14 +16,23 @@
         </button>
     </form>
 
-    <!-- Display submitted secrets -->
     <% if (secrets.length > 0) { %>
         <div style="text-align: left; max-width: 500px; margin: auto;">
             <h3 style="margin-bottom: 15px;">Anonymous Secrets:</h3>
             <ul style="list-style-type: none; padding: 0;">
                 <% secrets.forEach(function(secret) { %>
-                    <li style="background-color: #fff; padding: 12px 15px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
-                        <%= secret.content %>
+                    <li style="background-color: #fff; padding: 12px 15px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center;">
+                        <span><%= secret.content %></span>
+                        <span>
+                            
+                            <a href="/edit/<%= secret._id %>" style="color: blue; text-decoration: none;">Edit</a>
+
+                            <form action="/delete/<%= secret._id %>" method="POST" style="display:inline;">
+                                <button type="submit" style="margin-left: 10px; background:none; border:none; color:red; cursor:pointer;">
+                                    Delete
+                                </button>
+                            </form>
+                        </span>
                     </li>
                 <% }); %>
             </ul>
@@ -33,7 +41,6 @@
         <p style="color: #888;">No secrets submitted yet.</p>
     <% } %>
 
-    <!-- Only Logout Button with Confirmation -->
     <div class="button-group" style="margin-top: 40px;">
         <a class="btn btn-dark btn-lg button" href="#" onclick="confirmLogout()" role="button">Logout</a>
     </div>
