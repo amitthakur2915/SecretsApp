@@ -1,0 +1,53 @@
+<!-- <%- include('partials/header') %>
+
+<div class="container" style="max-width: 600px; margin: auto; padding-top: 40px;">
+    <h2 style="text-align: center; margin-bottom: 20px;">Edit Your Secret</h2>
+
+    <form action="/edit/<%= secret._id %>" method="POST" style="display: flex; gap: 10px;">
+        <input type="text" name="secret" value="<%= secret.content %>" 
+               placeholder="Enter your updated secret" required
+               style="flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        
+        <button type="submit"
+                style="padding: 10px 20px; background-color: #2e2e2e; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Update
+        </button>
+    </form>
+
+    <div style="margin-top: 20px; text-align: center;">
+        <a href="/secrets" style="color: #007bff; text-decoration: none;">Cancel</a>
+    </div>
+</div>
+
+<%- include('partials/footer') %> -->
+
+
+
+
+
+
+<%- include('partials/header') %>
+
+<div class="container" style="max-width: 600px; margin: auto; padding-top: 40px;">
+    <h2 style="text-align: center; margin-bottom: 20px;">Edit Your Secret</h2>
+
+    <form action="/edit/<%= secret._id %>" method="POST" style="display: flex; gap: 10px;">
+        <input type="text" name="secret" value="<%= secret.content %>" 
+               placeholder="Enter your updated secret" required
+               style="flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        
+        <button type="submit"
+                style="padding: 10px 20px; background-color: #2e2e2e; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Update
+        </button>
+    </form>
+
+    <div style="margin-top: 20px; text-align: center;">
+        <a href="/submit" style="color: #007bff; text-decoration: none;">Cancel</a>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
+
+
+
